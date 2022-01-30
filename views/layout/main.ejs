@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="IR-fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Anime Template">
+  <meta name="keywords" content="Anime, unica, creative, html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Anime | Template</title>
+
+  <!-- Google Font -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"> -->
+  <!-- Css Styles -->
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap-grid.css" type="text/css">
+  <link rel="stylesheet" href="/bootstrap_icon/bootstrap-icons.css" type="text/css">
+  <link rel="stylesheet" href="/css/plyr.css" type="text/css">
+  <link rel="stylesheet" href="/css/main.min.css" type="text/css">
+  <link rel="stylesheet" href="/uikit-3.10.0/css/uikit-rtl.min.css">
+</head>
+
+<body class="rtl">
+  <!-- Page Preloder -->
+  <div id="preloder">
+    <div class="spinner-container">
+      <svg class="spinner" width="70px" height="70px" viewBox="0 0 66 66" xmlns:"http://www.w3.org/2000/svg">
+
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+
+      </svg>
+    </div>
+  </div>
+  <!-- -->
+  <div class="navbar">
+    <div class="navbar-container">
+      <div class="logo-container">
+        <h1 class="logo">سوکی نو انیمه</h1>
+      </div>
+      <div class="menu-container">
+        <ul class="menu-list">
+          <li class="menu-list-item active">Home</li>
+          <li class="menu-list-item">Movies</li>
+          <li class="menu-list-item">Series</li>
+          <li class="menu-list-item">Popular</li>
+          <li class="menu-list-item">Trends</li>
+
+        </ul>
+      </div>
+      <div class="profile-container">
+        <% if (user) { %>
+        <% if(user.isadmin){%>
+        <img class="profile-picture" src="/<%= user.imgname %> " alt="">
+        <% } %>
+        <div class="profile-text-container">
+          <span class="profile-text"><%= user.username %></span>
+          <i class="fas fa-caret-down"></i>
+        </div>
+        <% } else { %>
+        <div class="profile-text-container">
+          <span class="profile-text"><a href="/dashbord/login">ورود</a>/<a href="/dashbord/signin">ثبت نام</a>
+          </span>
+        </div>
+        <%}%>
+       
+        <div class="toggle">
+          <i class="bi bi-moon toggle-icon"></i>
+          <i class="bi bi-sun toggle-icon"></i>
+          <div class="toggle-ball"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- body %>
+        <script src="/js/jq.js"></script>
+        <script src="/bootstrap/js/bootstrap.js"></script>
+        <script src="/js/player.js"></script>
+        <script src="/js/main.js"></script>
+        <script src="/uikit-3.10.0/js/uikit.min.js"></script>
+</body>
+
+</html>

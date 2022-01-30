@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    color: var(--w);
+}
+@font-face {
+    font-family: 'irsans';
+    src: url('/fonts/irsans.ttf');
+}
+@font-face {
+    font-family: 'homa';
+    src: url('/fonts/Homa.ttf');
+}
+body {
+    font-family: 'irsans';
+    
+}
