@@ -10,7 +10,6 @@ const MongoStore = require("connect-mongo")
 const mong=new MongoStore({mongoUrl:"mongodb://127.0.0.1:27017/",dbName:"tsuki"})
 const app = express()
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -40,6 +39,13 @@ app.get('*', (req, res) => {
 })
 var port=9000;
 app.listen(port, () => {
-    console.log(`run in port ${port}`)
-    connect()
+
+
+console.log(`
+starting app
+app runing in port ${port}
+app url : http://127.0.0.1:${port}
+`)
+ 
+   connect()
 });
