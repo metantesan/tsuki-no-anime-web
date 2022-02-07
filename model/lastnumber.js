@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var user = mongoose.Schema(
+var num = mongoose.Schema(
     {
         num:{
             type:Number,
@@ -7,4 +7,4 @@ var user = mongoose.Schema(
         }
     }
 )
-module.exports= mongoose.model("User", user);
+module.exports= mongoose.model("num", num);
