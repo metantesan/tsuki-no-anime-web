@@ -203,8 +203,8 @@ body {
   width: 10px;
   height: 10px;
   background-color: #00ffff;
-  -webkit-box-shadow: 0 0 2px #ff000050;
-          box-shadow: 0 0 2px #ff000050;
+  -webkit-box-shadow: 1.5px 1.5px 1.5px #ff0000;
+          box-shadow: 1.5px 1.5px 1.5px #ff0000;
 }
 
 .anime-show .anime-show-titel::before {
@@ -215,7 +215,9 @@ body {
   border-radius: 50%;
   width: 7px;
   height: 7px;
-  background-color: #585555;
+  background-color: #ff0000;
+  -webkit-box-shadow: 1px 1px 1px #00ffff;
+          box-shadow: 1px 1px 1px #00ffff;
 }
 
 .navbar {

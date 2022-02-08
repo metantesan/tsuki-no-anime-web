@@ -1,10 +1,11 @@
 .anime-show {
     border: 2px solid blue;
-    transform: translate(0px,50px);
+    transform: translate(0px, 50px);
+
     .anime-show-titel {
         max-width: 150px;
         min-width: max-content;
-        transform: translate(30px,-20px);
+        transform: translate(30px, -20px);
         align-items: center;
         justify-content: center;
         text-align: center;
@@ -15,29 +16,34 @@
         background: #6d6868;
         box-shadow: 0px 0px 5px #585555;
         border-radius: 10px;
-        border-top-right-radius:20px ;
-        &::after{// display: block;
+        border-top-right-radius: 20px;
+
+        &::after {
+            // display: block;
             content: '';
             position: absolute;
-            top:-6px;
+            top: -6px;
             right: -6px;
             border-radius: 50%;
             width: 10px;
             height: 10px;
             background-color: #00ffff;
-            box-shadow: 0 0 2px #ff000050;
-      
+            box-shadow: 1.5px 1.5px 1.5px #ff0000;
+
         }
-        &::before{// display: block;
+
+        &::before {
+            // display: block;
             content: '';
             position: absolute;
-            top:-16px;
+            top: -16px;
             right: -16px;
             border-radius: 50%;
             width: 7px;
             height: 7px;
-            background-color: #585555;
-        
+            background-color: #ff0000;
+            box-shadow: 1px 1px 1px #00ffff;
+
         }
     }
 }
