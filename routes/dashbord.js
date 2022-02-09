@@ -1,5 +1,9 @@
 var express = require('express');
 const anime = require('../model/anime');
+const { getbystring } = require('../modules/getfileformat');
+const { v4: uuidv4 } = require('uuid')
+const fs = require('fs');
+const path = require('path');
 var router = express.Router();
 
 /* GET users listing. */
@@ -20,6 +24,7 @@ router.post('/login', function (req, res, next) {
 });
 router.get('/anime', async (req, res) => {
   try {
+
     var anim = await anime.find();
     return res.render('admin/anime/index', {
       layout: "layout/dashbord",
@@ -35,20 +40,40 @@ router.get('/anime', async (req, res) => {
 
 });
 router.get('/anime/add', async (req, res) => {
+  return res.render('admin/anime/add', {
+    layout: "layout/dashbord",
+    url: req.baseUrl
+  })
+})
+router.post('/anime/add', async (req, res) => {
   try {
+    var { name, des, g } = req.body;
+    var ag = String(g).split(',')
+var img=req.files.img
+    var img_name = uuidv4() + '.' + getbystring(img.name)
+    var path_img = '../public/anime/' + img_name
+    img.mv(path_img, err => {
+      if (err)
+        console.log(err);
+    })
     var ani = {
-      img_name: "1.jpg",
-      titel: "one piece",
-      description: "درباره یک پسر کوچک",
-      views: 5,
-      genres: ["اکشن", "عاشقانه"],
+      img_name: img_name,
+      titel: name,
+      description: des,
+      genres: ag,
     }
+
     await anime.create(ani)
 
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {
-    return res.redirect(`/${req.baseUrl}/anime`)
+    res.statusCode=504;
+    return res.render('error/5xx', {
+      layout:"layout/dashbord",
+      url: req.baseUrl + req.url,
+      err
+    })
   }
 })
 router.get('/anime/edit/:id', async (req, res) => {
@@ -67,6 +92,8 @@ router.get('/anime/edit/:id', async (req, res) => {
 })
 router.get('/anime/delete/:id', async (req, res) => {
   try {
+    var ani = await anime.findById(req.params.id)
+    await fs.rmSync(path.join(__dirname, 'public', 'anime', anime.img_name))
     await anime.findByIdAndRemove(req.params.id)
     return res.redirect(`${req.baseUrl}/anime`)
   }

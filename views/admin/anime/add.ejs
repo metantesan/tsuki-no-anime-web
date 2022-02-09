@@ -1,0 +1,25 @@
+<div class=" text-right">
+  <h2>ثبت انیمه</h2>
+  <form method="post" enctype="multipart/form-data">
+    <div class="from-row mt-2">
+      <input type="text" name="name" class="form-control" required placeholder="اسم انیمه">
+    </div>
+
+    <div class="from-row mt-2">
+      <textarea name="des" class="form-control" required >
+
+        </textarea>
+    </div>
+
+    <div class="from-row  mt-2">
+      <input type="text" name="g" class="form-control" required placeholder="ژانر ها">
+    </div>
+    <div class="uk-margin" uk-margin>
+        <div uk-form-custom="target: true">
+            <input type="file" name="img">
+            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">افزودن</button>
+  </form>
+</div>
