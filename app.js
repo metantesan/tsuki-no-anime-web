@@ -3,6 +3,7 @@ const path = require('path')
 const layout = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
 const bodyparser = require('body-parser');
+const file = require('express-fileupload');
 const { connect ,conn } = require('./config/db');
 const mongoose = require('mongoose');
 const session = require("express-session");
@@ -30,6 +31,7 @@ app.use(
         cookie: { maxAge: 24 * 60 * 60 * 1000 },
     })
 );
+app.use(file())
 app.use('/', require('./routes/index'))
 app.use('/dashbord', require('./routes/dashbord'))
 app.use("/anime", require('./routes/anime'))

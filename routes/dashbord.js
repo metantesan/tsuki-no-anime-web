@@ -23,7 +23,7 @@ router.get('/anime', async (req, res) => {
     var anim = await anime.find();
     return res.render('admin/anime/index', {
       layout: "layout/dashbord",
-      url: req.baseUrl + req.url,
+      url: req.baseUrl,
       animes: anim
     })
   }
@@ -34,7 +34,7 @@ router.get('/anime', async (req, res) => {
   }
 
 });
-router.get('/anime/add',async (req, res) => {
+router.get('/anime/add', async (req, res) => {
   try {
     var ani = {
       img_name: "1.jpg",
@@ -44,27 +44,28 @@ router.get('/anime/add',async (req, res) => {
       genres: ["اکشن", "عاشقانه"],
     }
     await anime.create(ani)
+
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {
     return res.redirect(`/${req.baseUrl}/anime`)
   }
 })
-router.get('/anime/edit/:id',async (req, res) => {
+router.get('/anime/edit/:id', async (req, res) => {
   try {
-    var {id}=req.params
-    var ani=await anime.findById(id)
+    var { id } = req.params
+    var ani = await anime.findById(id)
     return res.render('admin/anime/edit', {
       layout: "layout/dashbord",
       url: req.baseUrl + req.url,
       animes: anim
     })
   }
-  catch (err) { 
+  catch (err) {
 
   }
 })
-router.get('/anime/delete/:id',async (req, res) => {
+router.get('/anime/delete/:id', async (req, res) => {
   try {
     await anime.findByIdAndRemove(req.params.id)
     return res.redirect(`${req.baseUrl}/anime`)
