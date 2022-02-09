@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var anime = mongoose.Schema(
     {
-        img_url: {
+        img_name: {
             type: String,
             required: true,
         },
@@ -18,8 +18,7 @@ var anime = mongoose.Schema(
             default: 0
         },
         genres: {
-            type: mongoose.Schema.Types
-            
+            type: mongoose.Schema.Types.Array
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

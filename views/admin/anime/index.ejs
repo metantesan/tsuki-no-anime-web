@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">نام </th>
+        <th scope="col">توضیحات</th>
+        <th scope="col">بازدید</th>
+        <th scope="col">ژانر ها</th>
+        <th scope="col">کاربر سازنده</th>
+        <th scope="col">عکس</th>
+        <th scope="col">فرایند ها</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% animes.forEach(anime => { %>
+            <tr>
+                <th><%= anime.titel %> </th>
+                <td><%= anime.description %></td>
+                <td><%= anime.views %></td>
+                <td><% anime.genres.forEach(genre=>{ %>
+                    <%= genre %>,
+                <% }) %></td>
+                <td><%= anime.user %></td>
+                <td><img src="/anime/<%= anime.img_name %>" width="60" height="100"></td>
+                <td>
+                    <a href="<%= url%>/edit/<%= anime._id%>" class="btn btn-warning btn-sm">ویرایش</a>
+                    <a href="<%= url%>/delete/<%= anime._id%>" class="btn btn-danger btn-sm">حذف</a>
+                </td>
+              </tr>
+        <% }) %>
+    </tbody>
+  </table>
