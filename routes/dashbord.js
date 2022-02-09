@@ -49,9 +49,9 @@ router.post('/anime/add', async (req, res) => {
   try {
     var { name, des, g } = req.body;
     var ag = String(g).split(',')
-var img=req.files.img
+    var img = req.files.amg
     var img_name = uuidv4() + '.' + getbystring(img.name)
-    var path_img = '../public/anime/' + img_name
+    var path_img = '.' + '/public/anime/' + img_name
     img.mv(path_img, err => {
       if (err)
         console.log(err);
@@ -68,9 +68,9 @@ var img=req.files.img
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {
-    res.statusCode=504;
+    res.statusCode = 504;
     return res.render('error/5xx', {
-      layout:"layout/dashbord",
+      layout: "layout/dashbord",
       url: req.baseUrl + req.url,
       err
     })
@@ -93,12 +93,15 @@ router.get('/anime/edit/:id', async (req, res) => {
 router.get('/anime/delete/:id', async (req, res) => {
   try {
     var ani = await anime.findById(req.params.id)
-    await fs.rmSync(path.join(__dirname, 'public', 'anime', anime.img_name))
+    fs.unlink('./public/anime/'+ani.img_name, err => {
+      if (err)
+        console.log(err);
+    })
     await anime.findByIdAndRemove(req.params.id)
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {
-    return res.redirect(`/${req.baseUrl}/anime`)
+    return res.redirect(`${req.baseUrl}/anime`)
   }
 })
 module.exports = router;
