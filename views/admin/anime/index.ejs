@@ -15,7 +15,7 @@
         <% animes.forEach(anime => { %>
             <tr>
                 <th><%= anime.titel %> </th>
-                <td><%= anime.description %></td>
+                <td><%= anime.description.substring(1,100) %>...</td>
                 <td><%= anime.views %></td>
                 <td><% anime.genres.forEach(genre=>{ %>
                     <%= genre %>,
@@ -24,9 +24,24 @@
                 <td><img src="/anime/<%= anime.img_name %>" width="60" height="100"></td>
                 <td>
                     <a href="<%= url%>/anime/edit/<%= anime._id%>" class="btn btn-warning btn-sm">ویرایش</a>
-                    <a href="<%= url%>/anime/delete/<%= anime._id%>" class="btn btn-danger btn-sm">حذف</a>
+                    <a href="<%= url%>/anime/delete/<%= anime._id%>" class="btn btn-danger btn-sm" del="true">حذف</a>
                 </td>
               </tr>
         <% }) %>
     </tbody>
   </table>
+    <script>
+      $('a[del=true]').click(function (e) { 
+        e.preventDefault();
+        var href=$(this).attr("href");
+        var yes=confirm("ایا از پاک کردن این رکورد مطمعا هستید ؟")
+        if(yes){
+          $.get(href,
+            function (data, textStatus, jqXHR) {
+
+              
+            }
+          );
+        }
+      });
+    </script>

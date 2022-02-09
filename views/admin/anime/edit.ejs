@@ -1,0 +1,28 @@
+<div class=" text-right">
+  <h2>ثبت انیمه</h2>
+  <form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_id" value="<%= anime._id%>">
+    <img src="/anime/<%= anime.img_name %>" alt="" srcset="" width="60" height="100">
+    <div class="uk-margin" uk-margin>
+      <div uk-form-custom="target: true">
+        <input type="file" name="amg">
+        <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+      </div>
+    </div>
+    <div class="from-row mt-2">
+      <input type="text" name="titel" class="form-control" required placeholder="اسم انیمه" value="<%= anime.titel %>">
+    </div>
+
+    <div class="from-row mt-2">
+      <textarea name="description" class="form-control" required>
+            <%= anime.description %>
+      </textarea>
+    </div>
+
+    <div class="from-row  mt-2">
+      <input type="text" name="genres" class="form-control" required placeholder="ژانر ها" value="<% anime.genres.forEach((genre,val)=>{ %><% if(val!=0){%>,<%}%><%= genre %><% }) %>">
+    </div>
+
+    <button type="submit" class="btn btn-warning">ویرایش</button>
+  </form>
+</div>

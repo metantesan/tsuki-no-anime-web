@@ -83,25 +83,82 @@ router.get('/anime/edit/:id', async (req, res) => {
     return res.render('admin/anime/edit', {
       layout: "layout/dashbord",
       url: req.baseUrl + req.url,
-      animes: anim
+      anime: ani
     })
   }
   catch (err) {
-
+    res.statusCode = 504;
+    return res.render('error/5xx', {
+      layout: "layout/dashbord",
+      url: req.baseUrl + req.url,
+      err
+    })
+  }
+})
+router.post('/anime/edit/:id', async (req, res) => {
+  try {
+    var { id } = req.params
+    var { titel, description, genres, _id } = req.body
+    genres = String(genres).split(',')
+   
+    if (id != _id)
+    {
+      res.statusCode=401
+      return res.render("error/4xx",{
+        layout: "layout/dashbord",
+        url: req.baseUrl + req.url,
+        err:"bad request"
+      })
+    }
+    if(req.files){
+      var img=req.files.amg
+      var ani = await anime.findById(req.params.id)
+      fs.unlink('./public/anime/' + ani.img_name, err => {
+        if (err)
+          console.log(err);
+      })
+      var img_name = uuidv4() + '.' + getbystring(img.name)
+      var path_img = '.' + '/public/anime/' + img_name
+      img.mv(path_img, err => {
+        if (err)
+          console.log(err);
+      })
+      var up = {
+        titel, description, genres,img_name
+      }
+    }
+    else{
+      var up = {
+        titel, description, genres
+      }
+    }
+    
+    await anime.findByIdAndUpdate(_id, up)
+    return res.redirect(`${req.baseUrl}/anime`)
+  }
+  catch (err) {
+    res.statusCode = 504;
+    return res.render('error/5xx', {
+      layout: "layout/dashbord",
+      url: req.baseUrl + req.url,
+      err
+    })
   }
 })
 router.get('/anime/delete/:id', async (req, res) => {
   try {
     var ani = await anime.findById(req.params.id)
-    fs.unlink('./public/anime/'+ani.img_name, err => {
+    fs.unlink('./public/anime/' + ani.img_name, err => {
       if (err)
         console.log(err);
     })
     await anime.findByIdAndRemove(req.params.id)
-    return res.redirect(`${req.baseUrl}/anime`)
+    // return res.redirect(`${req.baseUrl}/anime`)
+    return res.send("ok")
   }
   catch (err) {
-    return res.redirect(`${req.baseUrl}/anime`)
+    // return res.redirect(`${req.baseUrl}/anime`)
+    return res.send("err")
   }
 })
 module.exports = router;
