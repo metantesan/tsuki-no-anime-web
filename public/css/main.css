@@ -187,10 +187,12 @@ body {
   font-family: "homa";
   font-size: 30px;
   border: 1px solid #747070;
-  background: #6d6868;
+  background: #942194;
   -webkit-box-shadow: 0px 0px 5px #585555;
           box-shadow: 0px 0px 5px #585555;
   border-radius: 10px;
+  padding-bottom: 50px;
+  color: #fbff00;
   border-top-right-radius: 20px;
 }
 
@@ -249,6 +251,7 @@ body {
   -webkit-box-flex: 2;
       -ms-flex: 2;
           flex: 2;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .logo {
@@ -260,6 +263,7 @@ body {
   -webkit-box-flex: 6;
       -ms-flex: 6;
           flex: 6;
+  padding-top: 20px;
 }
 
 .menu-list {
@@ -359,7 +363,7 @@ body {
 }
 
 .left-menu-icon {
-  color: white;
+  color: var(--w);
   font-size: 20px;
   margin-bottom: 40px;
 }

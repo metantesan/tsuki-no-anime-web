@@ -24,6 +24,8 @@
 
 .logo-container {
     flex: 2;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
 }
 
 .logo {
@@ -33,6 +35,7 @@
 
 .menu-container {
     flex: 6;
+    padding-top:20px;
 }
 
 .menu-list {
@@ -108,7 +111,7 @@
 }
 
 .left-menu-icon {
-    color: white;
+    color: var(--w);
     font-size: 20px;
     margin-bottom: 40px;
 }
