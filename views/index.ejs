@@ -10,10 +10,22 @@
   <div class="container">
     <div class="anime-show">
       <div class="anime-show-titel">این فصل</div>
+      <div class="anime-show-list">
+        <% for(var i=0;i< 5;i++){%>
+        <div class="anime-show-one">
+          <img src="/anime/eb0r8a9w.jpg" alt="">
+          <div class="anime-show-one-hide">
+            <i class="bi bi-star-fill"></i>
+            <p>8.98</p>
+          </div>
+        </div>
+        <%}%>
+      </div>
     </div>
-  </div>
- 
-</div>
-<%- contentFor('styles') %>
 
-<%- contentFor('scripts') %>
+
+      </div>
+    </div>
+    <%- contentFor('styles') %>
+
+    <%- contentFor('scripts') %>

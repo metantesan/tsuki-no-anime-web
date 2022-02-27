@@ -10,7 +10,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")
 const mong=new MongoStore({mongoUrl:"mongodb://127.0.0.1:27017/",dbName:"tsuki"})
 const app = express()
-
+app.locals.preloder=false
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')

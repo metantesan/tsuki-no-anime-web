@@ -1,6 +1,10 @@
 * {
   margin: 0;
   color: var(--w);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 @font-face {
@@ -164,7 +168,6 @@ body {
 }
 
 .anime-show {
-  border: 2px solid blue;
   -webkit-transform: translate(0px, 50px);
           transform: translate(0px, 50px);
 }
@@ -196,30 +199,60 @@ body {
   border-top-right-radius: 20px;
 }
 
-.anime-show .anime-show-titel::after {
-  content: '';
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: #00ffff;
-  -webkit-box-shadow: 1.5px 1.5px 1.5px #ff0000;
-          box-shadow: 1.5px 1.5px 1.5px #ff0000;
+.anime-show .anime-show-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.anime-show .anime-show-titel::before {
-  content: '';
-  position: absolute;
-  top: -16px;
-  right: -16px;
-  border-radius: 50%;
-  width: 7px;
-  height: 7px;
-  background-color: #ff0000;
-  -webkit-box-shadow: 1px 1px 1px #00ffff;
-          box-shadow: 1px 1px 1px #00ffff;
+.anime-show .anime-show-list .anime-show-one {
+  width: 225px;
+  height: 311px;
+  display: inline;
+  margin: 10px;
+}
+
+.anime-show .anime-show-list .anime-show-one img {
+  border: 0.5px solid var(--w);
+  border-radius: 10px;
+}
+
+.anime-show .anime-show-list .anime-show-one .anime-show-one-hide {
+  display: none;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  height: 50px;
+  opacity: .90;
+  background-color: #2ef07f;
+  z-index: 2;
+  -webkit-transform: translate(0, -50px);
+          transform: translate(0, -50px);
+  padding: 2px;
+}
+
+.anime-show .anime-show-list .anime-show-one .anime-show-one-hide p {
+  display: inline;
+  color: #ff0000 !important;
+  opacity: 1;
+  -webkit-transform: translate(0, 50%);
+          transform: translate(0, 50%);
+}
+
+.anime-show .anime-show-list .anime-show-one .anime-show-one-hide i {
+  display: inline;
+  color: #fbff00;
+}
+
+.anime-show .anime-show-list .anime-show-one:hover .anime-show-one-hide {
+  display: inline-block;
 }
 
 .navbar {

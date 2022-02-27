@@ -1,5 +1,5 @@
 .anime-show {
-    border: 2px solid blue;
+
     transform: translate(0px, 50px);
 
     .anime-show-titel {
@@ -20,32 +20,55 @@
         color: #fbff00;
         border-top-right-radius: 20px;
 
-        &::after {
-            // display: block;
-            content: '';
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            border-radius: 50%;
-            width: 10px;
-            height: 10px;
-            background-color: #00ffff;
-            box-shadow: 1.5px 1.5px 1.5px #ff0000;
+    }
 
-        }
+    .anime-show-list {
+        display: flex;
 
-        &::before {
-            // display: block;
-            content: '';
-            position: absolute;
-            top: -16px;
-            right: -16px;
-            border-radius: 50%;
-            width: 7px;
-            height: 7px;
-            background-color: #ff0000;
-            box-shadow: 1px 1px 1px #00ffff;
+        .anime-show-one {
+            width: 225px;
+            height: 311px;
+            display: inline;
+            margin: 10px;
 
+            img {
+
+                border: .5px solid var(--w);
+                border-radius: 10px;
+            }
+
+            .anime-show-one-hide {
+                display: none;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                border-radius: 10px;
+                width: 100%;
+                height: 50px;
+                opacity: .90;
+                background-color: #2ef07f;
+                z-index: 2;
+                transform: translate(0, -50px);
+                padding: 2px;
+
+                p {
+                    display: inline;
+                    color: #ff0000 !important;
+                    opacity: 1;
+                    transform: translate(0, 50%);
+
+                }
+
+                i {
+                    display: inline;
+                    color: #fbff00;
+                }
+            }
+
+            &:hover .anime-show-one-hide {
+                display: inline-block;
+            }
         }
     }
 }
