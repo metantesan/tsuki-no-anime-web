@@ -49,5 +49,12 @@
           localStorage.setItem("dark", "1")
         }
       });
-      
+      $(".anime-show-one").hover(function () {
+          // over
+          $(this).addClass("show");
+        }, function () {
+          // out
+          $(this).removeClass("show");
+        }
+      );
 })(jQuery);

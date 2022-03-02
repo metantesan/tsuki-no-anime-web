@@ -7,25 +7,17 @@
   <i class="left-menu-icon bi bi-tv"></i>
 </div>
 <div class="container-show">
-  <div class="container">
-    <div class="anime-show">
-      <div class="anime-show-titel">این فصل</div>
-      <div class="anime-show-list">
-        <% for(var i=0;i< 5;i++){%>
-        <div class="anime-show-one">
-          <img src="/anime/eb0r8a9w.jpg" alt="">
-          <div class="anime-show-one-hide">
-            <i class="bi bi-star-fill"></i>
-            <p>8.98</p>
-          </div>
-        </div>
-        <%}%>
-      </div>
-    </div>
+<div class="container">
+  <div class="anime-show">
+    <div class="anime-show-titel">این فصل</div>
+  <!-- <div class="wrapper">--><% for(var i=0;i< 6;i++){%>
+      <%- include('./include/card') %>
+      <%}%></div>
+  <!-- </div> -->
 
+</div>
 
-      </div>
-    </div>
-    <%- contentFor('styles') %>
+</div>
+<%- contentFor('styles') %>
 
-    <%- contentFor('scripts') %>
+      <%- contentFor('scripts') %>
