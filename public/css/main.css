@@ -200,66 +200,6 @@ body {
   display: flex;
 }
 
-.anime-show .anime-show-list .anime-show-one {
-  width: 225px;
-  height: 311px;
-  display: inline;
-  margin: 10px;
-  -webkit-box-shadow: 0 0 5px var(--w);
-          box-shadow: 0 0 5px var(--w);
-  border-radius: 10px;
-  background-color: #7f8883;
-}
-
-.anime-show .anime-show-list .anime-show-one img {
-  border-radius: 10px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.anime-show .anime-show-list .anime-show-one .anime-show-one-title {
-  text-align: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-.anime-show .anime-show-list .anime-show-one .anime-show-one-hide {
-  display: none;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  position: relative;
-  border-radius: 10px;
-  width: 100%;
-  height: 50px;
-  opacity: .90;
-  background-color: #2ef07f;
-  z-index: 5;
-  -webkit-transform: translate(0, -50px);
-          transform: translate(0, -50px);
-  padding: 2px;
-}
-
-.anime-show .anime-show-list .anime-show-one .anime-show-one-hide p {
-  display: inline;
-  color: #ff0000 !important;
-  opacity: 1;
-  -webkit-transform: translate(0, 50%);
-          transform: translate(0, 50%);
-}
-
-.anime-show .anime-show-list .anime-show-one .anime-show-one-hide i {
-  display: inline;
-  color: #fbff00;
-}
-
-.anime-show .anime-show-list .anime-show-one.show .anime-show-one-hide {
-  display: inline-block;
-}
-
 .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -377,12 +317,14 @@ body {
 .card span.seen {
   position: absolute;
   background: rgba(201, 201, 201, 0.8);
-  color: black !important;
   opacity: 1;
   width: 30%;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
   top: 190px;
   border-radius: 5px;
   font-size: 13px;
@@ -391,10 +333,13 @@ body {
   padding: 5px;
 }
 
+.card span.seen i {
+  color: black !important;
+}
+
 .card span.resolution {
   position: absolute;
   background: rgba(231, 229, 79, 0.8);
-  color: black !important;
   opacity: 1;
   width: 30%;
   right: 3%;
@@ -405,16 +350,20 @@ body {
   padding: 5px;
 }
 
+.card span.resolution i {
+  color: black !important;
+}
+
 .card .status[c=complete] {
-  --status-c:#66db30;
+  --status-c: #66db30;
 }
 
 .card .status[c=airing] {
-  --status-c:#d7e429;
+  --status-c: #d7e429;
 }
 
 .card .status[c=not-aired] {
-  --status-c:#dd333c;
+  --status-c: #dd333c;
 }
 
 .card span.status {
