@@ -21,6 +21,7 @@
 body {
   margin: 0;
   padding: 0;
+  background: #151515 !important;
   font-family: 'irsans';
 }
 
@@ -160,11 +161,6 @@ body {
 .dark {
   --b:#ffffff;
   --w:#000000;
-}
-
-.anime-show {
-  -webkit-transform: translate(0px, 50px);
-          transform: translate(0px, 50px);
 }
 
 .anime-show .anime-show-titel {
@@ -593,6 +589,9 @@ body {
   min-height: calc(100vh - 50px);
   color: white;
   margin-right: 50px;
+  position: relative;
+  top: 0px;
+  left: 0px;
 }
 
 .content-container {

@@ -1,6 +1,6 @@
 var express = require('express');
 const anime = require('../model/anime');
-const { getbystring } = require('../modules/getfileformat');
+const cfn = require('../modules/createfilename');
 const { v4: uuidv4 } = require('uuid')
 const fs = require('fs');
 const path = require('path');
@@ -50,7 +50,7 @@ router.post('/anime/add', async (req, res) => {
     var { name, des, g } = req.body;
     var ag = String(g).split(',')
     var img = req.files.amg
-    var img_name = uuidv4() + '.' + getbystring(img.name)
+    var img_name = cfn(img.data, img.name)
     var path_img = '.' + '/public/anime/' + img_name
     img.mv(path_img, err => {
       if (err)
@@ -100,39 +100,42 @@ router.post('/anime/edit/:id', async (req, res) => {
     var { id } = req.params
     var { titel, description, genres, _id } = req.body
     genres = String(genres).split(',')
-   
-    if (id != _id)
-    {
-      res.statusCode=401
-      return res.render("error/4xx",{
+
+    if (id != _id) {
+      res.statusCode = 401
+      return res.render("error/4xx", {
         layout: "layout/dashbord",
         url: req.baseUrl + req.url,
-        err:"bad request"
+        err: "bad request"
       })
     }
-    if(req.files){
-      var img=req.files.amg
+    if (req.files) {
+      var img = req.files.amg
       var ani = await anime.findById(req.params.id)
-      fs.unlink('./public/anime/' + ani.img_name, err => {
-        if (err)
-          console.log(err);
-      })
-      var img_name = uuidv4() + '.' + getbystring(img.name)
+      var cai = await anime.find({ img_name: ani.img_name })
+      if (cai.length === 1) {
+        fs.unlink('./public/anime/' + ani.img_name, err => {
+          if (err)
+            console.log(err);
+        })
+      }
+
+      var img_name = cfn(img.data, img.name)
       var path_img = '.' + '/public/anime/' + img_name
       img.mv(path_img, err => {
         if (err)
           console.log(err);
       })
       var up = {
-        titel, description, genres,img_name
+        titel, description, genres, img_name
       }
     }
-    else{
+    else {
       var up = {
         titel, description, genres
       }
     }
-    
+
     await anime.findByIdAndUpdate(_id, up)
     return res.redirect(`${req.baseUrl}/anime`)
   }
@@ -148,10 +151,13 @@ router.post('/anime/edit/:id', async (req, res) => {
 router.get('/anime/delete/:id', async (req, res) => {
   try {
     var ani = await anime.findById(req.params.id)
-    fs.unlink('./public/anime/' + ani.img_name, err => {
-      if (err)
-        console.log(err);
-    })
+    var cai = await anime.find({ img_name: ani.img_name })
+    if (cai.length === 1) {
+      fs.unlink('./public/anime/' + ani.img_name, err => {
+        if (err)
+          console.log(err);
+      })
+    }
     await anime.findByIdAndRemove(req.params.id)
     // return res.redirect(`${req.baseUrl}/anime`)
     return res.send("ok")
