@@ -7,7 +7,8 @@ const file = require('express-fileupload');
 const { connect ,conn } = require('./config/db');
 const mongoose = require('mongoose');
 const session = require("express-session");
-const MongoStore = require("connect-mongo")
+const MongoStore = require("connect-mongo");
+const { appendFile } = require('fs');
 const mong=new MongoStore({mongoUrl:"mongodb://127.0.0.1:27017/",dbName:"tsuki"})
 const app = express()
 app.locals.preloder=false
@@ -32,6 +33,7 @@ app.use(
     })
 );
 app.use(file())
+app.use(require('./modules/hostname'))
 app.use('/', require('./routes/index'))
 app.use('/dashbord', require('./routes/dashbord'))
 app.use("/anime", require('./routes/anime'))
