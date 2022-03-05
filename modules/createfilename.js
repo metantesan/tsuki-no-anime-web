@@ -1,5 +1,11 @@
-const {getbystring} = require('./getfileformat');
 const crypto = require('crypto');
+const getbystring =(filename)=>{
+    var name=String(filename)
+
+    var an=name.split('.')
+    return an[an.length-1]
+}
+
 var getHash = ( content ) => {				
     var hash = crypto.createHash('sha256')
     //passing the data to be hashed
