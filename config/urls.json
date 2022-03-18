@@ -1,0 +1,22 @@
+{
+    "routes":{
+        "index":"/",
+        "anime":"/anime",
+        "dashbord":"/users",
+        "api":"/api"
+    },
+    "pages":{
+        "index":{
+
+        },
+        "anime":{
+            
+        },
+        "dashbord":{
+            
+        },
+        "api":{
+            
+        }
+    }
+}

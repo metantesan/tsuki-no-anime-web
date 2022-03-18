@@ -5,12 +5,11 @@ const cookieParser = require('cookie-parser')
 const bodyparser = require('body-parser');
 const file = require('express-fileupload');
 const { connect ,conn } = require('./config/db');
-const mongoose = require('mongoose');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const { appendFile } = require('fs');
 const mong=new MongoStore({mongoUrl:"mongodb://127.0.0.1:27017/",dbName:"tsuki"})
 const app = express()
+const urls=require('./config/urls.json');
 app.locals.preloder=false
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -34,10 +33,10 @@ app.use(
 );
 app.use(file())
 app.use(require('./modules/hostname'))
-app.use('/', require('./routes/index'))
-app.use('/dashbord', require('./routes/dashbord'))
-app.use("/anime", require('./routes/anime'))
-app.use('/api/v1',require('./routes/api.v1'))
+app.use(urls.routes.index, require('./routes/index'))
+app.use(urls.routes.dashbord, require('./routes/dashbord'))
+app.use(urls.routes.anime, require('./routes/anime'))
+app.use(urls.routes.api,require('./routes/api.v1'))
 app.get('*', (req, res) => {
     res.sendStatus(404)
 })

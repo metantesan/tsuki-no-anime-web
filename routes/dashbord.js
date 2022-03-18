@@ -1,15 +1,19 @@
 var express = require('express');
 const anime = require('../model/anime');
 const cfn = require('../modules/createfilename');
-const { v4: uuidv4 } = require('uuid')
 const fs = require('fs');
-const path = require('path');
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
   res.render('admin/index', {
     layout: "layout/dashbord"
+  })
+});
+router.get('/signup', function (req, res, next) {
+  res.render('admin/singup', {
+    // layout: "layout/dashbord",
+    url: req.baseUrl + req.url,
   })
 });
 router.get('/login', function (req, res, next) {
