@@ -14,7 +14,7 @@
     <tbody>
         <% animes.forEach(anime => { %>
             <tr>
-                <th><%= anime.titel %> </th>
+                <th><%= anime.title %> </th>
                 <td><%= anime.description.substring(1,100) %>...</td>
                 <td><%= anime.views %></td>
                 <td><% anime.genres.forEach(genre=>{ %>

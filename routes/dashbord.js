@@ -62,7 +62,7 @@ router.post('/anime/add', async (req, res) => {
     })
     var ani = {
       img_name: img_name,
-      titel: name,
+      title: name,
       description: des,
       genres: ag,
     }
@@ -102,7 +102,7 @@ router.get('/anime/edit/:id', async (req, res) => {
 router.post('/anime/edit/:id', async (req, res) => {
   try {
     var { id } = req.params
-    var { titel, description, genres, _id } = req.body
+    var { title, description, genres, _id } = req.body
     genres = String(genres).split(',')
 
     if (id != _id) {
@@ -131,12 +131,12 @@ router.post('/anime/edit/:id', async (req, res) => {
           console.log(err);
       })
       var up = {
-        titel, description, genres, img_name
+        title, description, genres, img_name
       }
     }
     else {
       var up = {
-        titel, description, genres
+        title, description, genres
       }
     }
 

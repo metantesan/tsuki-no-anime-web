@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
    
     res.render('index', {
         layout: 'layout/main',
-        titel: "| home",
+        title: "| home",
         user:{username: req.session.name || "null" ,},
     });
 });

@@ -81,8 +81,10 @@ body {
   stroke-dashoffset: 0;
   -webkit-transform-origin: center;
           transform-origin: center;
-  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  -webkit-animation: dash 1.4s ease-in-out infinite,
+ colors 5.6s ease-in-out infinite;
+          animation: dash 1.4s ease-in-out infinite,
+ colors 5.6s ease-in-out infinite;
 }
 
 @-webkit-keyframes colors {
@@ -161,7 +163,7 @@ body {
 .dark {
   --b:#ffffff;
   --w:#000000;
-}
+}title
 
 .anime-show .anime-show-titel {
   max-width: 150px;
