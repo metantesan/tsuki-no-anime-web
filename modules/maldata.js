@@ -1,6 +1,22 @@
-module.exports = (mal_data) => {
+
+module.exports.convert = (mal_data) => {
+    // season to num 
+    var s = ["Winter", "Spring", "Summer", "Fall"]
+    var p = String(mal_data.premiered)
+    p = p.split(' ');
+    let years = p[1]
+    let season = p[0]
+var  des=mal_data.synopsis;
+    // 
     var stats = String(mal_data.scoreStats)
-    stats = Number(stats.split(' ')[2])
+    stats = stats.split(' ')[2].replace(',', "").replace(",", "")
+    //
+    if (mal_data.score === "N/A") {
+        var score = "N/A"
+    }
+    else {
+        var score = Number(mal_data.score)
+    }
     var data = {
         id: mal_data.id,
         titles:
@@ -10,7 +26,7 @@ module.exports = (mal_data) => {
             jp: mal_data.japaneseTitle,
             others: mal_data.sysnonyms
         },
-        description: mal_data.synopsis,
+        description: des,
         thumbnail: mal_data.picture,
         trailer: mal_data.trailer,
         info: {
@@ -20,13 +36,16 @@ module.exports = (mal_data) => {
             duration: mal_data.duration,
             score:
             {
-                score: mal_data.score,
-                stats: stats
+                score: score,
+                stats: Number(stats)
             },
             rating: mal_data.rating,
             genres: mal_data.genres,
             aired: mal_data.aired,
-            premiered: mal_data.premiered,
+            premiered: {
+                years: Number(years),
+                season: s.indexOf(season) + 1,
+            },
             status: mal_data.status,
             broadcast: mal_data.broadcast,
             producers: mal_data.producers,
@@ -37,4 +56,13 @@ module.exports = (mal_data) => {
             favorites: mal_data.favorites
         }
     }
+    return data;
 }
+// type Seasons = 'spring' | 'summer' | 'fall' | 'winter';
+// type FullRatings =
+// | 'G - All ages'
+// | 'PG - Children'
+// | 'PG-13 - Teens 13 or older'
+// | 'R - 17+'
+// | 'R+ - Mild Nudity'
+// | 'Rx - Hentai';
