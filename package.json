@@ -21,6 +21,7 @@
         "jsonwebtoken": "^8.5.1",
         "mal-scraper": "^2.11.4",
         "mongoose": "^6.1.4",
+        "nodejs-file-downloader": "^4.9.3",
         "uuid": "^8.3.2"
     }
 }
