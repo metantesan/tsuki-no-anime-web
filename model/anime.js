@@ -1,25 +1,49 @@
 const mongoose = require('mongoose');
+const { stringify } = require('uuid');
 var anime = mongoose.Schema(
     {
-        img_name: {
-            type: String,
-            required: true,
+        id: Number,
+        titles:
+        {
+            title: String,
+            en: String,
+            jp: String,
+            others: mongoose.SchemaTypes.Array
         },
-        title: {
-            type: String,
-            required: true,
-        },
-        description: {
-            type: String,
-            required: true,
+        description: String,
+        thumbnail: String,
+        trailer: String,
+        info: {
+            type:String,
+            source: String,
+            episodes: String,
+            duration: String,
+            score:
+            {
+                score: Number,
+                stats: Number
+            },
+            rating: String,
+            genres: mongoose.SchemaTypes.Array,
+            aired: String,
+            premiered: {
+                years: Number,
+                season: Number,
+            },
+            status:String,
+            broadcast: String,
+            producers: String,
+            studios:String,
+            ranked: String,
+            popularity: String,
+            members: String,
+            favorites: String,
         },
         views: {
             type: Number,
             default: 0
         },
-        genres: {
-            type: mongoose.Schema.Types.Array
-        },
+
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",

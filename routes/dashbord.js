@@ -55,7 +55,7 @@ router.post('/anime/add', async (req, res) => {
     var ag = String(g).split(',')
     var img = req.files.amg
     var img_name = cfn(img.data, img.name)
-    var path_img = '.' + '/public/anime/' + img_name
+    var path_img = '.' + '/public/ani/' + img_name
     img.mv(path_img, err => {
       if (err)
         console.log(err);
@@ -118,14 +118,14 @@ router.post('/anime/edit/:id', async (req, res) => {
       var ani = await anime.findById(req.params.id)
       var cai = await anime.find({ img_name: ani.img_name })
       if (cai.length === 1) {
-        fs.unlink('./public/anime/' + ani.img_name, err => {
+        fs.unlink('./public/ani/' + ani.img_name, err => {
           if (err)
             console.log(err);
         })
       }
 
       var img_name = cfn(img.data, img.name)
-      var path_img = '.' + '/public/anime/' + img_name
+      var path_img = '.' + '/public/ani/' + img_name
       img.mv(path_img, err => {
         if (err)
           console.log(err);
@@ -157,7 +157,7 @@ router.get('/anime/delete/:id', async (req, res) => {
     var ani = await anime.findById(req.params.id)
     var cai = await anime.find({ img_name: ani.img_name })
     if (cai.length === 1) {
-      fs.unlink('./public/anime/' + ani.img_name, err => {
+      fs.unlink('./public/ani/' + ani.img_name, err => {
         if (err)
           console.log(err);
       })
