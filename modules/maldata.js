@@ -1,5 +1,5 @@
 const downloader = require('./filedownloader');
-const mal=require('mal-scraper');
+const Mal = require('mal-scraper');
 const { v4: uuid, stringify } = require('uuid');
 module.exports.convert = (mal_data) => {
     // season to num 
@@ -20,42 +20,45 @@ module.exports.convert = (mal_data) => {
         var score = Number(mal_data.score)
     }
     var data = {
-        id: mal_data.id,
-        titles:
-        {
-            title: mal_data.title,
-            en: mal_data.englishTitle,
-            jp: mal_data.japaneseTitle,
-            others: mal_data.sysnonyms
-        },
-        description: des,
-        thumbnail: mal_data.picture,
-        trailer: mal_data.trailer,
-        info: {
-            type: mal_data.type,
-            source: mal_data.source,
-            episodes: mal_data.episodes,
-            duration: mal_data.duration,
-            score:
+        id: mal_data.id, 
+        mal: {
+
+            titles:
             {
-                score: score,
-                stats: Number(stats)
+                title: mal_data.title,
+                en: mal_data.englishTitle,
+                jp: mal_data.japaneseTitle,
+                others: mal_data.sysnonyms
             },
-            rating: mal_data.rating,
-            genres: mal_data.genres,
-            aired: mal_data.aired,
-            premiered: {
-                years: Number(years),
-                season: s.indexOf(season) + 1,
-            },
-            status: mal_data.status,
-            broadcast: mal_data.broadcast,
-            producers: mal_data.producers,
-            studios: mal_data.studios,
-            ranked: mal_data.ranked,
-            popularity: mal_data.popularity,
-            members: mal_data.members,
-            favorites: mal_data.favorites
+            description: des,
+            thumbnail: mal_data.picture,
+            trailer: mal_data.trailer,
+            info: {
+                type: mal_data.type,
+                source: mal_data.source,
+                episodes: mal_data.episodes,
+                duration: mal_data.duration,
+                score:
+                {
+                    score: score,
+                    stats: Number(stats)
+                },
+                rating: mal_data.rating,
+                genres: mal_data.genres,
+                aired: mal_data.aired,
+                premiered: {
+                    years: Number(years),
+                    season: s.indexOf(season) + 1,
+                },
+                status: mal_data.status,
+                broadcast: mal_data.broadcast,
+                producers: mal_data.producers,
+                studios: mal_data.studios,
+                ranked: mal_data.ranked,
+                popularity: mal_data.popularity,
+                members: mal_data.members,
+                favorites: mal_data.favorites
+            }
         }
     }
     return data;
@@ -65,14 +68,14 @@ module.exports.getbyid = async (id) => {
 
 
         var s = 'https://myanimelist.net/anime/' + String(id)
-        var m = await mal.getInfoFromURL(s)
+        var m = await Mal.getInfoFromURL(s)
         var c = this.convert(m)
         var fname = uuid().replaceAll("-", "") + ".jpg";
         await downloader(c.thumbnail, fname)
         c.thumbnail = fname
         return c;
     }
-    catch(e){
+    catch (e) {
         console.log(e);
     }
 }
