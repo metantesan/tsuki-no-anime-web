@@ -1,7 +1,8 @@
 var express = require('express');
 const anime = require('../model/anime');
 const cfn = require('../modules/createfilename');
-const fs = require('fs');
+const downloader = require('../modules/filedownloader');
+const { convert } = require('../modules/maldata');
 var router = express.Router();
 
 /* GET users listing. */
@@ -51,24 +52,8 @@ router.get('/anime/add', async (req, res) => {
 })
 router.post('/anime/add', async (req, res) => {
   try {
-    var { name, des, g } = req.body;
-    var ag = String(g).split(',')
-    var img = req.files.amg
-    var img_name = cfn(img.data, img.name)
-    var path_img = '.' + '/public/ani/' + img_name
-    img.mv(path_img, err => {
-      if (err)
-        console.log(err);
-    })
-    var ani = {
-      img_name: img_name,
-      title: name,
-      description: des,
-      genres: ag,
-    }
-
-    await anime.create(ani)
-
+    var { id } = req.body;
+    
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {

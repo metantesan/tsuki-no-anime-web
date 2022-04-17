@@ -1,4 +1,5 @@
-
+const downloader = require('./filedownloader');
+const { v4: uuid } = require('uuid');
 module.exports.convert = (mal_data) => {
     // season to num 
     var s = ["Winter", "Spring", "Summer", "Fall"]
@@ -6,7 +7,7 @@ module.exports.convert = (mal_data) => {
     p = p.split(' ');
     let years = p[1]
     let season = p[0]
-var  des=mal_data.synopsis;
+    var des = mal_data.synopsis;
     // 
     var stats = String(mal_data.scoreStats)
     stats = stats.split(' ')[2].replace(',', "").replace(",", "")
@@ -57,6 +58,22 @@ var  des=mal_data.synopsis;
         }
     }
     return data;
+}
+module.exports.getbyid = async (id) => {
+    try {
+
+
+        var s = 'https://myanimelist.net/anime/' + id
+        var m = await mal.getInfoFromURL(s)
+        var c = this.convert(m)
+        var fname = uuid().replaceAll("-", "") + ".jpg";
+        await downloader(c.thumbnail, fname)
+        c.thumbnail = fname
+        return c;
+    }
+    catch(e){
+        console.log(e);
+    }
 }
 // type Seasons = 'spring' | 'summer' | 'fall' | 'winter';
 // type FullRatings =
