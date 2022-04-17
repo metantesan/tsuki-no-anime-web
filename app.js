@@ -1,12 +1,15 @@
-const express = require('express')
+// node m
 const path = require('path')
+// installed m
+const express = require('express')
 const layout = require('express-ejs-layouts')
 const cookieParser = require('cookie-parser')
 const bodyparser = require('body-parser');
 const file = require('express-fileupload');
-const { connect ,conn } = require('./config/db');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const { connect ,conn } = require('./config/db');
+var flash = require('connect-flash');
 const mong=new MongoStore({mongoUrl:"mongodb://127.0.0.1:27017/",dbName:"tsuki"})
 const app = express()
 const urls=require('./config/urls.json');
@@ -31,6 +34,7 @@ app.use(
         cookie: { maxAge: 24 * 60 * 60 * 1000 },
     })
 );
+app.use(flash());
 app.use(file())
 app.use(require('./modules/hostname'))
 app.use(urls.routes.index, require('./routes/index'))
@@ -42,13 +46,6 @@ app.get('*', (req, res) => {
 })
 var port=9000;
 app.listen(port, () => {
-
-
-console.log(`
-starting app
-app runing in port ${port}
-app url : http://127.0.0.1:${port}
-`)
- 
-   connect()
+console.log(`starting app\napp runing in port ${port}\napp url : http://127.0.0.1:${port}`);
+connect();
 });
