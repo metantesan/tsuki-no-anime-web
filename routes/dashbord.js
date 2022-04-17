@@ -1,8 +1,7 @@
 var express = require('express');
-const anime = require('../model/anime');
+const Anime = require('../model/anime');
 const cfn = require('../modules/createfilename');
-const downloader = require('../modules/filedownloader');
-const { convert } = require('../modules/maldata');
+const { getbyid } = require('../modules/maldata');
 var router = express.Router();
 
 /* GET users listing. */
@@ -53,7 +52,9 @@ router.get('/anime/add', async (req, res) => {
 router.post('/anime/add', async (req, res) => {
   try {
     var { id } = req.body;
-    
+   var anime= await getbyid(id)
+ 
+   await Anime.create(anime);
     return res.redirect(`${req.baseUrl}/anime`)
   }
   catch (err) {
