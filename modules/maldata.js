@@ -1,5 +1,6 @@
 const downloader = require('./filedownloader');
-const { v4: uuid } = require('uuid');
+const mal=require('mal-scraper');
+const { v4: uuid, stringify } = require('uuid');
 module.exports.convert = (mal_data) => {
     // season to num 
     var s = ["Winter", "Spring", "Summer", "Fall"]
@@ -63,7 +64,7 @@ module.exports.getbyid = async (id) => {
     try {
 
 
-        var s = 'https://myanimelist.net/anime/' + id
+        var s = 'https://myanimelist.net/anime/' + String(id)
         var m = await mal.getInfoFromURL(s)
         var c = this.convert(m)
         var fname = uuid().replaceAll("-", "") + ".jpg";

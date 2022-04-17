@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { stringify } = require('uuid');
+
 var anime = mongoose.Schema(
     {
         id: Number,
